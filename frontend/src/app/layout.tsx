@@ -1,5 +1,7 @@
 import "./globals.css";
 import SF_Pro_Display from 'next/font/local';
+import AppHeader from "@/components/base/AppHeader";
+import AppFooter from "@/components/base/AppFooter";
 
 const sfPro = SF_Pro_Display({
 	variable: '--font-sf-pro',
@@ -108,7 +110,13 @@ export default function RootLayout({
 					lang="en"
 					className={`${sfPro.variable} h-full antialiased`}
 			>
-			<body className="min-h-full flex flex-col">{children}</body>
+			<body className="min-h-full flex flex-col">
+			<AppHeader/>
+			<main className="pb-20">
+				{children}
+			</main>
+			<AppFooter/>
+			</body>
 			</html>
 	);
 }
