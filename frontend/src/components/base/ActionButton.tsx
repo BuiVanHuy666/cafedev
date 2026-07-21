@@ -1,25 +1,22 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { AnchorHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
+import { Button } from "@/components/ui/button";
 
-interface NavButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-	href: string;
+interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode;
 	variant?: "default" | "outline";
 }
 
-export function NavButton({
-	href,
+export function ActionButton({
 	children,
 	variant = "default",
 	className,
 	...props
-}: NavButtonProps) {
+}: ActionButtonProps) {
 	return (
-			<Link
-					href={href}
+			<Button
 					className={cn(
-							"inline-flex items-center justify-center whitespace-nowrap",
+							"inline-flex items-center justify-center whitespace-nowrap cursor-pointer",
 							"rounded-full h-9.5 px-5 text-[15px] font-medium tracking-wide",
 							"transition-all active:scale-[0.96]",
 							variant === "default" && "bg-[#0071e3] hover:bg-[#0077ED] text-white",
@@ -29,6 +26,6 @@ export function NavButton({
 					{...props}
 			>
 				{children}
-			</Link>
+			</Button>
 	);
 }

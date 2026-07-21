@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Globe, Bell, Gift, Sparkles, CheckCircle2, Megaphone, Clock } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/base/Logo";
 import {
 	DropdownMenu,
@@ -21,10 +21,10 @@ import {
 import {
 	Sheet,
 	SheetContent,
-	SheetDescription,
 	SheetHeader,
 	SheetTitle,
 } from "@/components/ui/sheet";
+import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 
 const MOCK_NOTIFICATIONS = [
 	{
@@ -67,101 +67,121 @@ export default function AppHeader() {
 
 	return (
 			<>
-				<header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md supports-backdrop-filter:bg-background/60">
+				<LiquidGlassCard
+						glowIntensity='sm'
+						shadowIntensity='sm'
+						borderRadius='100px'
+						blurIntensity='sm'
+						draggable={false}
+						className='sticky top-1 z-50 w-[98%] m-auto'
+				>
 					<div className="flex h-16 items-center justify-between px-4">
 						<div className="flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-80">
-							<Logo className="w-9 h-9 text-primary" />
+							<Logo className="w-9 h-9 text-primary"/>
 							<span className="text-2xl font-bold tracking-tight">cafedev</span>
 						</div>
 
 						<div className="flex items-center gap-3">
-							<Button
+							<LiquidGlassCard
+									glowIntensity="sm"
+									shadowIntensity="sm"
+									borderRadius="9999px"
+									blurIntensity="xl"
+									draggable={false}
+									className="h-10 px-5 flex items-center justify-center cursor-pointer transition-transform active:scale-95 bg-primary/20 hover:bg-primary/30 border border-primary/40 text-foreground shadow-md"
 									onClick={() => setIsAuthDrawerOpen(true)}
-									className="rounded-full px-5 font-semibold shadow-sm transition-transform active:scale-95 bg-primary text-primary-foreground hover:bg-primary/90"
 							>
-								Nhận Ưu Đãi
-							</Button>
+								<span className="font-semibold text-[14px]">Nhận Ưu Đãi</span>
+							</LiquidGlassCard>
 
 							<DropdownMenu>
-								<DropdownMenuTrigger
-										className={buttonVariants({
-											variant: "ghost",
-											size: "icon",
-											className: "rounded-full h-10 w-10 cursor-pointer"
-										})}
-								>
-									<Globe className="w-6 h-6 text-foreground/80" />
-									<span className="sr-only">Đổi ngôn ngữ</span>
+								<DropdownMenuTrigger className="outline-none border-none bg-transparent p-0 flex rounded-full shrink-0 focus-visible:ring-0">
+									<LiquidGlassCard
+											glowIntensity="sm"
+											shadowIntensity="xs"
+											borderRadius="9999px"
+											blurIntensity="sm"
+											draggable={false}
+											className="h-10 w-10 shrink-0 flex items-center justify-center cursor-pointer transition-transform active:scale-95 bg-secondary/30 hover:bg-secondary/50 border border-white/20 shadow-md"
+									>
+										<Globe className="w-5.5 h-5.5 text-foreground/80"/>
+										<span className="sr-only">Đổi ngôn ngữ</span>
+									</LiquidGlassCard>
 								</DropdownMenuTrigger>
 
 								<DropdownMenuContent
 										align="end"
-										className="w-40 rounded-xl z-100 bg-background/10 backdrop-blur-md shadow-xl border"
+										className="w-40 rounded-xl z-100 bg-background/50 backdrop-blur-xl shadow-xl border border-white/10"
 								>
-									<DropdownMenuItem className="cursor-pointer font-medium">🇻🇳 Việt Nam</DropdownMenuItem>
-									<DropdownMenuItem className="cursor-pointer font-medium">🇬🇧 English</DropdownMenuItem>
-									<DropdownMenuItem className="cursor-pointer font-medium">🇨🇳 中文 (China)</DropdownMenuItem>
+									<DropdownMenuItem className="cursor-pointer font-medium hover:bg-secondary/40">🇻🇳 Việt Nam</DropdownMenuItem>
+									<DropdownMenuItem className="cursor-pointer font-medium hover:bg-secondary/40">🇬🇧 English</DropdownMenuItem>
+									<DropdownMenuItem className="cursor-pointer font-medium hover:bg-secondary/40">🇨🇳 中文 (China)</DropdownMenuItem>
 								</DropdownMenuContent>
 							</DropdownMenu>
 
-							<Button
-									variant="ghost"
-									size="icon"
-									className="relative rounded-full h-10 w-10"
+							<LiquidGlassCard
+									glowIntensity="sm"
+									shadowIntensity="xs"
+									borderRadius="9999px"
+									blurIntensity="xl"
+									draggable={false}
+									className="h-10 w-10 shrink-0 flex items-center justify-center cursor-pointer transition-transform active:scale-95 bg-secondary/30 hover:bg-secondary/50 border border-white/20 shadow-md relative"
 									onClick={() => setIsNotifOpen(true)}
 							>
-								<Bell className="w-5 h-5 text-foreground/80" />
+								<Bell className="w-5 h-5 text-foreground/80"/>
 								{unreadCount > 0 && (
-										<span className="absolute top-0 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-[11px] font-bold text-destructive-foreground border-2 border-background shadow-sm bg-[#fa1837]">
-                                    {unreadCount}
-                                </span>
+										<span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#fa1837] text-[10px] font-bold text-white border-2 border-background/80 shadow-sm">
+											{unreadCount}
+										</span>
 								)}
 								<span className="sr-only">Thông báo</span>
-							</Button>
+							</LiquidGlassCard>
 						</div>
 					</div>
-				</header>
+				</LiquidGlassCard>
 
 				<Sheet open={isNotifOpen} onOpenChange={setIsNotifOpen}>
 					<SheetContent side="right" className="w-full sm:max-w-md p-0 flex flex-col">
-						<SheetHeader className="p-4 border-b text-left">
+						<SheetHeader className="p-4">
 							<SheetTitle className="text-xl font-bold">Thông báo</SheetTitle>
-							<SheetDescription className="text-xs">
-								Cập nhật trạng thái đơn hàng và các khuyến mãi mới nhất.
-							</SheetDescription>
 						</SheetHeader>
 
-						<div className="flex-1 overflow-y-auto no-scrollbar p-2">
+						<div className="flex-1 overflow-y-auto no-scrollbar p-3 flex flex-col gap-3">
 							{MOCK_NOTIFICATIONS.map((notif) => {
 								const Icon = notif.icon;
 								return (
-										<div
+										<LiquidGlassCard
 												key={notif.id}
-												className={`flex gap-3 p-3 mb-1 rounded-xl cursor-pointer transition-colors hover:bg-muted/50 ${
-														!notif.isRead ? "bg-primary/5" : ""
-												}`}
+												shadowIntensity='sm'
+												blurIntensity='sm'
+												borderRadius='18px'
+												glowIntensity='sm'
+												draggable={false}
+												className='w-full cursor-pointer transition-transform active:scale-[0.98]'
 										>
-											<div className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center mt-0.5 ${notif.iconBg}`}>
-												<Icon className={`w-5 h-5 ${notif.iconColor}`} />
-											</div>
-
-											<div className="flex flex-col flex-1">
-												<div className="flex justify-between items-start gap-2">
-													<h4 className={`text-sm leading-tight ${!notif.isRead ? "font-bold text-foreground" : "font-semibold text-muted-foreground"}`}>
-														{notif.title}
-													</h4>
-													{!notif.isRead && (
-															<div className="w-2 h-2 rounded-full bg-primary shrink-0 mt-1" />
-													)}
+											<div className="relative z-30 flex items-start p-3.5 gap-3 text-foreground">
+												<div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-sm ${notif.iconBg}`}>
+													<Icon className={`w-5 h-5 ${notif.iconColor}`}/>
 												</div>
-												<p className="text-[12px] text-muted-foreground mt-1 line-clamp-2">
-													{notif.desc}
-												</p>
-												<span className="text-[10px] text-muted-foreground/70 mt-1.5 font-medium">
-                                            {notif.time}
-                                        </span>
+
+												<div className="flex flex-col flex-1">
+													<div className="flex justify-between items-start gap-2">
+														<h4 className={`text-xs leading-tight ${!notif.isRead ? "font-bold text-foreground" : "font-semibold text-muted-foreground"}`}>
+															{notif.title}
+														</h4>
+														<span className="text-[10px] text-muted-foreground/70 shrink-0 font-medium">{notif.time}</span>
+													</div>
+
+													<p className="text-[11px] text-muted-foreground mt-1 line-clamp-2">
+														{notif.desc}
+													</p>
+												</div>
+
+												{!notif.isRead && (
+														<div className="w-2 h-2 rounded-full bg-primary shrink-0 self-center shadow-[0_0_8px_rgba(var(--primary),0.8)]"/>
+												)}
 											</div>
-										</div>
+										</LiquidGlassCard>
 								);
 							})}
 						</div>
@@ -170,11 +190,11 @@ export default function AppHeader() {
 
 				<Drawer open={isAuthDrawerOpen} onOpenChange={setIsAuthDrawerOpen}>
 					<DrawerContent className="px-4 pb-8 pt-4">
-						<div className="mx-auto w-12 h-1.5 rounded-full bg-muted mb-3" />
+						<div className="mx-auto w-12 h-1.5 rounded-full bg-muted mb-3"/>
 
 						<DrawerHeader className="p-0 text-center mb-4">
 							<div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-2">
-								<Gift className="w-6 h-6 text-primary animate-bounce" />
+								<Gift className="w-6 h-6 text-primary animate-bounce"/>
 							</div>
 							<DrawerTitle className="text-lg font-bold tracking-tight">
 								Đăng nhập & Nhận ưu đãi
@@ -186,7 +206,7 @@ export default function AppHeader() {
 
 						<div className="flex flex-col gap-2 mb-5">
 							<div className="flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground ml-1">
-								<Sparkles className="w-3 h-3 text-yellow-500" />
+								<Sparkles className="w-3 h-3 text-yellow-500"/>
 								<span>Voucher dành cho thành viên mới:</span>
 							</div>
 
@@ -233,10 +253,10 @@ export default function AppHeader() {
 									className="w-full h-11 text-sm font-semibold rounded-xl border-2 bg-white text-black hover:bg-gray-50 hover:text-black shadow-xs active:scale-[0.98] transition-transform cursor-pointer"
 							>
 								<svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
-									<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
-									<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
-									<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
-									<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+									<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+									<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+									<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+									<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
 								</svg>
 								Tiếp tục với Google
 							</Button>
