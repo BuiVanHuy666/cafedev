@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products_option_groups', function (Blueprint $table) {
             $table->foreignIdFor(Product::class)->constrained('products')->cascadeOnDelete();
             $table->foreignIdFor(OptionGroup::class)->constrained('option_groups')->cascadeOnDelete();
-            $table->unique(['product_id', 'option_group_id']);
+            $table->unique(['product_id', 'option_group_id'], 'product_option_unique');
 
             $table->boolean('is_required')->default(false);
             $table->boolean('is_multiple')->default(false);
