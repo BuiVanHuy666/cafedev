@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-#[Fillable(['attribute_id', 'value'])]
+#[Fillable(['attribute_id', 'value', 'display_order'])]
 class AttributeValue extends Model
 {
     public function attribute(): BelongsTo
