@@ -10,10 +10,10 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
 
 - php - 8.5
+- filament/filament (FILAMENT) - v5
 - laravel/framework (LARAVEL) - v13
 - laravel/prompts (PROMPTS) - v0
 - laravel/sanctum (SANCTUM) - v4
-- livewire/blaze (BLAZE) - v1
 - livewire/flux (FLUXUI_FREE) - v2
 - livewire/livewire (LIVEWIRE) - v4
 - larastan/larastan (LARASTAN) - v3
@@ -21,9 +21,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/mcp (MCP) - v0
 - laravel/pail (PAIL) - v1
 - laravel/pint (PINT) - v1
-- laravel/pao (PAO) - v1
 - laravel/sail (SAIL) - v1
-- spatie/laravel-permission (PERMISSION) - v8
 - pestphp/pest (PEST) - v4
 - phpunit/phpunit (PHPUNIT) - v12
 - tailwindcss (TAILWINDCSS) - v4
@@ -37,9 +35,6 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 - You must follow all existing code conventions used in this application. When creating or editing a file, check sibling files for the correct structure, approach, and naming.
 - Use descriptive names for variables and methods. For example, `isRegisteredForDiscounts`, not `discount()`.
 - Check for existing components to reuse before writing a new one.
-- Use PHP 8 attributes for model configuration (e.g., `#[Fillable(['name', 'slug'])]` instead of `protected $fillable`).
-- Implement business logic in service classes (see `App\Services\AttributeService` for pattern). Services should handle complex workflows and queries.
-- The application follows an e-commerce domain model with: Products, Variants, Categories, Attributes (size, color, etc.), Options (variant choices), and OptionGroups.
 
 ## Verification Scripts
 
@@ -52,10 +47,6 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 ## Frontend Bundling
 
-- Frontend is bundled with Vite using `laravel-vite-plugin`. The dev server is available via `npm run dev`.
-- Use `npm run build` for production builds or `npm run dev` for development. For concurrent PHP/Vite development, run `composer run dev` (runs `php artisan dev`).
-- Livewire components use Single File Component (SFC) format by default. Create them with `php artisan make:livewire {name}`.
-- Tailwind CSS v4 is integrated via `@tailwindcss/vite` plugin. Component styling uses Tailwind classes and Flux UI component library.
 - If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `npm run build`, `npm run dev`, or `composer run dev`. Ask them.
 
 ## Documentation Files
@@ -141,11 +132,6 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 - When generating links to other pages, prefer named routes and the `route()` function.
 
-## Authorization & Permissions
-
-- This project uses `spatie/laravel-permission` for role-based access control (RBAC).
-- Define permissions and roles in seeders or migrations as needed. Check authorization in controllers/actions using `auth()->user()->can('permission')`.
-
 ## Testing
 
 - When creating models for tests, use the factories for the models. Check if the factory has custom states that can be used before manually setting up the model.
@@ -160,11 +146,9 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 # Livewire
 
-- Livewire allows you to build dynamic, reactive interfaces in PHP without writing JavaScript.
+- Livewire allow to build dynamic, reactive interfaces in PHP without writing JavaScript.
 - You can use Alpine.js for client-side interactions instead of JavaScript frameworks.
 - Keep state server-side so the UI reflects it. Validate and authorize in actions as you would in HTTP requests.
-- Use Flux UI (v2) components for consistent, pre-built UI elements. Flux components provide table, button, card, form field, and modal components ready to use.
-- Livewire Blaze optimizes Blade component rendering—use it when folding components into parent templates for performance.
 
 === pint/core rules ===
 

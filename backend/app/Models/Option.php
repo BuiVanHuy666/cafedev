@@ -11,6 +11,6 @@ class Option extends Model
 {
     public function optionGroup(): BelongsTo
     {
-        return $this->belongsTo(OptionGroup::class);
+        return $this->hasMany(Option::class)->orderBy('display_order');
     }
 }
